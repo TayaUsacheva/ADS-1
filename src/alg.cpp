@@ -27,31 +27,20 @@ uint64_t nPrime(uint64_t n) {
 }
 
 uint64_t nextPrime(uint64_t value) {
-    bool flag = false;
-    while (flag == false) {
-        value++;
-        for (int i = 2; i <= (value / 2); i++) {
-            if ((value % i) == 0)
-                flag = false;
-            else
-                flag = true;
-        }
+    int i = value + 1;
+    while (!checkPrime(i)) {
+        i++;
     }
-    return value;
+    return i;
 }
 
 uint64_t sumPrime(uint64_t hbound) {
     int x = 2;
     int sum = 2;
-    while ((x +1) < hbound) {
+    while ((x + 1) < hbound) {
         x++;
-        int kol_vo_del = 2;
-        for (int i = 2; i <= (x / 2); i++) {
-            if ((x % i) == 0)
-                kol_vo_del++;
-        }
-        if (kol_vo_del == 2)
-            sum+=x;
+        if (checkPrime(x))
+            sum += x;
     }
     return sum;
 }
